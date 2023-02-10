@@ -1,0 +1,69 @@
+<!-- 
+
+<form *ngIf="formlogin" [formGroup]="formlogin" (ngSubmit)="login()">
+<div class="group">
+
+<label for="user" class="label">Email</label>
+<input  formControlName="email"
+      type="email" 
+      class="input"            
+      >
+      <span  class="form-text text-danger"               
+      *ngIf="validarCampos('email')"> 
+      {{ getErrorMsg('email') }} </span>
+</div>
+<div class="group">
+<label for="pass" class="label">Password</label>
+<input  type="password" 
+      class="input" 
+      data-type="password"
+      formControlName="password">
+
+      <span   class="form-text text-danger"
+              *ngIf="validarCampos('password')">
+              {{ getErrorMsg('password') }}
+      </span>
+</div>
+
+<div class="group">
+<input type="submit" 
+     class="button" 
+     value="Sign In">
+</div>
+
+
+</form>
+
+ -->
+
+ <div class="mt-5 row justify-content-center">
+      <div class="col-md-6 mb-3">
+            <form [formGroup]="formlogin"  (ngSubmit)="login()">
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Email address</label>
+                    <input formControlName="email" type="email" class="form-control"  placeholder="Enter email">
+                    <span  class="form-text text-danger"               
+                    *ngIf="validarCampos('email')"> 
+                    {{ getErrorMsg('email') }} 
+                     </span>
+                    
+                  </div>
+                  <div class="form-group mt-2">
+                    <label for="exampleInputPassword1">Password</label>
+                    <input formControlName="password" type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                    <span   class="form-text text-danger"
+                    *ngIf="validarCampos('password')">
+                    {{ getErrorMsg('password') }}
+                   S</span>
+                  </div>
+                  <div class="form-group mt-2">
+                        <button type="submit" class="btn btn-primary enlinea espacio">Submit</button>
+                        <button type="button" class="btn btn-link enlinea espacio"
+                        [routerLink]="[ '/auth/register']">Do you want register</button>
+                  </div>
+
+                  
+                </form>
+      </div>
+ </div>
+ 
