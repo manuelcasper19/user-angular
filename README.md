@@ -25,3 +25,7 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+## Es necesario ejecutar npm install para reconstruir modules de node
+Hasta ahora es un proyecto no se pude impletar el login pero si el registro, borrado y consulta de clientes
+Estoy pendiente una nueva versión con mejoras más avanzada
