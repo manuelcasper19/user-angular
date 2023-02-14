@@ -5,8 +5,9 @@ import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RegisterComponent } from './auth/pages/register/register.component';
+import { AuthInterceptor } from './helper/auth.interceptor';
 
 
 @NgModule({
@@ -24,7 +25,11 @@ import { RegisterComponent } from './auth/pages/register/register.component';
     HttpClientModule
     
   ],
-  providers: [],
+  providers: [
+      {
+        provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true
+      }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -67,7 +67,8 @@
               "browserTarget": "userPrueba:build:production"
             },
             "development": {
-              "browserTarget": "userPrueba:build:development"
+              "browserTarget": "userPrueba:build:development",
+              "proxyConfig": "src/proxy.conf.json"
             }
           },
           "defaultConfiguration": "development"

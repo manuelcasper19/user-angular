@@ -25,6 +25,12 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.formlogin.reset( 
+      {
+        email : "test2@test.com",
+        password: "123456"
+      }
+    )
   }
 
   formlogin : FormGroup = this.fb.group({
@@ -45,8 +51,10 @@ export class LoginComponent implements OnInit {
 
    }
    const { email, password } = this.formlogin.value;
-   this.authService.getUserByEmail( email, password )
-       .subscribe( user => user
+   this.authService.login( email, password )
+       .subscribe( user => 
+        this.router.navigateByUrl("/users")
+       
           
        )
    

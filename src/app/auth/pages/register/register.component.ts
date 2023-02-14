@@ -90,7 +90,7 @@ export class RegisterComponent implements OnInit {
         .subscribe( user  => {
           if(user.id){
             Swal.fire(`User ${ user.fullName } creado exitosamente` );
-            this.router.navigateByUrl('/users')
+            this.router.navigateByUrl('/auth')
           }else {
             Swal.fire('Error!',  'No se pudo guardar el usuario');
           }

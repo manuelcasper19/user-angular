@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 import { User } from '../interfaces/auth.interface';
 import { catchError, map, of, tap, Observable } from 'rxjs';
 
@@ -12,6 +12,29 @@ export class ServicesService {
 
   constructor( private http: HttpClient) { }
 
+  //Apuntamos a la ruta generica de spring security http://localhost:8088/login por post y a la responde le agregamos el token
+  login( email : string, password: string ){
+    const url = `${ this._urlAuth }/login`;
+    const body = { email, password };
+
+    return this.http.post( url, body, {
+      observe : "response"
+    } ).pipe( 
+      map( (response : HttpResponse<any> ) => {
+        const body = response.body;
+        const header = response.headers;
+        const bearerToken = header.get("Authorization");
+        const token = bearerToken?.replace("Bearer ", "");
+       
+        localStorage.setItem( "token", token! );
+        return body;
+      } )
+    )
+  }
+
+  getToken(){
+    return localStorage.getItem("token");
+  }
 
   register( email: string, fullName: string, password: string,   ){
     const body = { email, fullName,  password };
@@ -79,9 +102,7 @@ export class ServicesService {
     return this.http.post<User>(url, body )
            .pipe( 
              tap( resp => {
-               if(resp.token){
-                 localStorage.setItem('token', resp.token!)
-               }
+                console.log( resp );
              }),
              map( resp => resp ),
           
